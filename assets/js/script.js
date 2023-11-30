@@ -42,3 +42,9 @@ searchForm.submit(handleFormSumbit)
 function searchAPI(city) {
     var url = `https://www.api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_key}`
 }
+
+function handleButton(event) {
+    event.preventDefaul()
+        // get city written inside the button
+    searchAPI(cityInsideButton)
+}
