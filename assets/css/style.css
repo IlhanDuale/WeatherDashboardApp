@@ -1,0 +1,22 @@
+* {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: whitesmoke;
+}
+
+h1 {
+    background: #384b99;
+    font-size: 3.5rem;
+    text-align: center;
+    padding: 25px 0;
+    color: #fff;
+}
+
+.row {
+    padding: 35px;
+    border-radius: 20px;
+}
