@@ -25,14 +25,24 @@
 // for that city.
 var API_key = '930477f5e46997d4da542d2d31298222'
 
+// Form submission handler
 function handleFormSumbit(event) {
     event.preventDefault()
     console.log("submit")
 
     //gather inputs
+    const city = $("#search-input").val();
+    //The searchAPI has been called
+    searchAPI("London");
+}
 
-    //
-    searchAPI("London")
+// Button click handler
+function handleButton(event) {
+    event.preventDefault();
+    // get city written inside the button
+    const city = $(this).text();
+
+    searchAPI(cityInsideButton)
 }
 
 let searchForm = $("#search-form")
@@ -41,10 +51,4 @@ searchForm.submit(handleFormSumbit)
 
 function searchAPI(city) {
     var url = `https://www.api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_key}`
-}
-
-function handleButton(event) {
-    event.preventDefaul()
-        // get city written inside the button
-    searchAPI(cityInsideButton)
 }
