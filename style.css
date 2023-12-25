@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background: #fff !important;
+}
+
+.weather-header {
+    padding: 20px;
+}
+
+h1 {
+    background: #5372F0;
+    font-size: 1.75rem;
+    text-align: center;
+    padding: 18px 0;
+    color: #fff;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-lg-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0 20px;
+}
+
+.col-lg-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+    padding: 0 20px;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.weather-search {
+    width: 100%;
+    padding: 10px;
+}
+
+.search-button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    background: #5372F0;
+    color: #fff;
+    border: none;
+}
+
+.search-button:hover {
+    background: #2c52ed;
+}
+
+#history {
+    margin-top: 20px;
+}
+
+#londonToday {
+    margin-top: 20px;
+}
+
+.iconGroup {
+    display: flex;
+    align-items: center;
+}
+
+.currentIcon {
+    max-width: 20px;
+    margin-left: 20px;
+}
+
+#forecast {
+    margin-top: 20px;
+}
+
+.card {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.icon1,
+.icon2,
+.icon3,
+.custom-icon4,
+.custom-icon5 {
+    max-width: 50px;
+    margin-bottom: 10px;
+}
+
+.currentIcon {
+    max-width: 50px;
+    margin-bottom: 10px;
+}
+
+.column {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 15px;
+}
+
+.custom-card {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.custom-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
