@@ -1,32 +1,9 @@
-// Acceptance Criteria
-
-//     *
-//     Create a weather dashboard with form inputs.*When a user searches
-// for a city they are presented with current and future conditions
-// for that city and that city is added to the search history
-//     *
-//     When a user views the current weather conditions
-// for that city they are presented with:
-//     *
-//     The city name *
-//     The date *
-//     An icon representation of weather conditions *
-//     The temperature *
-//     The humidity *
-//     The wind speed *
-//     When a user view future weather conditions
-// for that city they are presented with a 5 - day forecast that displays:
-//     *
-//     The date *
-//     An icon representation of weather conditions *
-//     The temperature *
-//     The humidity *
-//     When a user click on a city in the search history they are again presented with current and future conditions
-// for that city.
-
 $(document).ready(function() {
     let searchForm = $("#search-form");
     const API_key = '930477f5e46997d4da542d2d31298222';
+
+    // Load search history from local storage
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
     // Form submission handler
     function handleFormSubmit(event) {
@@ -34,6 +11,7 @@ $(document).ready(function() {
 
         // Gather inputs
         const city = $("#search-input").val();
+
         // The searchAPI has been called
         searchAPI(city);
     }
@@ -61,7 +39,7 @@ $(document).ready(function() {
             .then(response => response.json())
             .then(data => {
                 // Handle the data and update UI
-                updateUI(data);
+                updateUI(data, city);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -69,18 +47,14 @@ $(document).ready(function() {
             });
     }
 
-    function updateUI(data) {
-        // Clear previous results
-        $("#londonToday").empty();
-        $("#forecast").empty();
-
+    function updateUI(data, city) {
         // Display current weather
         const currentWeather = data.list[0];
         const cityName = data.city.name;
         const date = moment.unix(currentWeather.dt).format("MM/DD/YYYY");
         const iconUrl = `https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}.png`;
 
-        $("#londonToday").append(`
+        $("#londonToday").html(`
             <div class="iconGroup">
                 <h3 id="currentDay">${cityName} - ${date}</h3>
                 <img src="${iconUrl}" alt="Weather Icon" class="currentIcon">
@@ -91,6 +65,7 @@ $(document).ready(function() {
         `);
 
         // Display 5-day forecast
+        $("#forecast").empty();
         for (let i = 1; i <= 5; i++) {
             const forecast = data.list[i * 8 - 1]; // Use data for every 24 hours (i * 8 - 1)
             const forecastDate = moment.unix(forecast.dt).format("MM/DD/YYYY");
@@ -110,6 +85,21 @@ $(document).ready(function() {
         }
 
         // Add the searched city to the history
-        $("#history").prepend(`<button class="list-group-item list-group-item-action history-button">${cityName}</button>`);
+        if (!searchHistory.includes(city)) {
+            searchHistory.unshift(city);
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+            renderSearchHistory();
+        }
     }
+
+    // Render search history
+    function renderSearchHistory() {
+        $("#history").empty();
+        searchHistory.forEach(city => {
+            $("#history").append(`<button class="list-group-item list-group-item-action history-button">${city}</button>`);
+        });
+    }
+
+    // Initial render of search history
+    renderSearchHistory();
 });
