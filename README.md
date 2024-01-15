@@ -1,4 +1,4 @@
-# Weather-Dashboard
+# WeatherDashboardApp
 
 <img width="1418" alt="Screenshot 2023-12-25 at 19 40 47" src="https://github.com/IlhanDuale/Weather-Dashboard/assets/88343208/c2adbce1-7f93-4a1a-ae99-9b2e40fb28b4">
 
